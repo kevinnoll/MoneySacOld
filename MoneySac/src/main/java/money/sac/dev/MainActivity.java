@@ -17,7 +17,6 @@ public class MainActivity extends Activity {
     }
 
     private void load() {
-        radioGroup = (SegmentedRadioGroup)findViewById(R.id.radioGroup);
 
     }
 
