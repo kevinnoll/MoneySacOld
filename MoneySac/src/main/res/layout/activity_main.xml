@@ -27,25 +27,64 @@
             android:layout_marginBottom="10dp"
             android:layout_height="0dp"/>
 
-        <TextView
-            android:id="@+id/textViewIn"
-            android:layout_weight=".05"
-            android:layout_marginLeft="5dp"
+        <LinearLayout
+            android:id="@+id/linearLayoutIn"
+            android:orientation="horizontal"
             android:layout_height="0dp"
-            android:text="Einnahmen:"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_green_dark"
-            android:layout_width="match_parent"/>
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_weight=".05">
 
-        <TextView
-            android:id="@+id/textViewOut"
-            android:layout_weight=".05"
-            android:layout_marginLeft="5dp"
+            <TextView
+                android:id="@+id/textViewIn"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="match_parent"
+                android:text="@string/strEinnahmenHead"
+                android:textSize="16sp"
+                android:textColor="@android:color/holo_green_dark"/>
+
+            <TextView
+                android:id="@+id/textViewInValue"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:gravity="end"
+                android:layout_height="match_parent"
+                android:text="1203123,03 €"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_green_dark"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearLayoutOut"
+            android:orientation="horizontal"
             android:layout_height="0dp"
-            android:text="Ausgaben:"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_red_dark"
-            android:layout_width="match_parent"/>
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_weight=".05">
+
+            <TextView
+                android:id="@+id/textViewOut"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="match_parent"
+                android:text="@string/strAusgabenHead"
+                android:textSize="16sp"
+                android:textColor="@android:color/holo_red_dark"/>
+
+            <TextView
+                android:id="@+id/textViewOutValue"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:gravity="end"
+                android:layout_height="match_parent"
+                android:text="67853,03 €"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_red_dark"/>
+        </LinearLayout>
 
         <money.sac.dev.SegmentedRadioGroup
             android:layout_width="match_parent"
@@ -66,14 +105,14 @@
                 android:gravity="center"
                 android:checked="false"
                 android:textColor="@android:color/black"
-                android:text="Einnahmen"/>
+                android:text="@string/strEinnahmen"/>
             <RadioButton android:id="@+id/button_two"
                 android:layout_width="0dp"
                 android:layout_weight=".3"
                 android:layout_height="match_parent"
                 android:minWidth="40dip"
                 android:minHeight="33dip"
-                android:text="Ausgaben"
+                android:text="@string/strAusgaben"
                 android:button="@null"
                 android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -84,7 +123,7 @@
                 android:layout_weight=".3"
                 android:minWidth="40dip"
                 android:minHeight="33dip"
-                android:text="Beides"
+                android:text="@string/strBeides"
                 android:button="@null"
                 android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -97,7 +136,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.15"
-            android:text="+"
+            android:text="@string/strAdd"
             android:textSize="35sp"/>
 
     </LinearLayout>

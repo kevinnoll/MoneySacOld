@@ -4,5 +4,11 @@
     <string name="app_name">MoneySac</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world yo!</string>
+    <string name="strEinnahmenHead">Einnahmen:</string>
+    <string name="strAusgabenHead">Ausgaben:</string>
+    <string name="strEinnahmen">Einnahmen</string>
+    <string name="strAusgaben">Ausgaben</string>
+    <string name="strBeides">Beides</string>
+    <string name="strAdd">+</string>
 
 </resources>
