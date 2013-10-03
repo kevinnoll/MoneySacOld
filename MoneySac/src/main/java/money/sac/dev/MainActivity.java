@@ -6,10 +6,19 @@ import android.view.Menu;
 
 public class MainActivity extends Activity {
 
+    private SegmentedRadioGroup radioGroup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        load();
+    }
+
+    private void load() {
+        radioGroup = (SegmentedRadioGroup)findViewById(R.id.radioGroup);
+
     }
 
 
