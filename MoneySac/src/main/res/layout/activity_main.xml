@@ -22,10 +22,30 @@
 
         <ListView
             android:id="@+id/listEntries"
-            android:layout_weight=".75"
+            android:layout_weight=".65"
             android:layout_width="match_parent"
             android:layout_marginBottom="10dp"
             android:layout_height="0dp"/>
+
+        <TextView
+            android:id="@+id/textViewIn"
+            android:layout_weight=".05"
+            android:layout_marginLeft="5dp"
+            android:layout_height="0dp"
+            android:text="Einnahmen:"
+            android:textSize="16sp"
+            android:textColor="@android:color/holo_green_dark"
+            android:layout_width="match_parent"/>
+
+        <TextView
+            android:id="@+id/textViewOut"
+            android:layout_weight=".05"
+            android:layout_marginLeft="5dp"
+            android:layout_height="0dp"
+            android:text="Ausgaben:"
+            android:textSize="16sp"
+            android:textColor="@android:color/holo_red_dark"
+            android:layout_width="match_parent"/>
 
         <money.sac.dev.SegmentedRadioGroup
             android:layout_width="match_parent"
@@ -41,7 +61,6 @@
                 android:layout_height="match_parent"
                 android:minWidth="40dip"
                 android:minHeight="33dip"
-
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:button="@null"
                 android:gravity="center"
