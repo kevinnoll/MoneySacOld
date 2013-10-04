@@ -3,10 +3,13 @@ package money.sac.dev;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 public class MainActivity extends Activity {
 
     private SegmentedRadioGroup radioGroup;
+    private Spinner monthSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +20,14 @@ public class MainActivity extends Activity {
     }
 
     private void load() {
-
+        monthSpinner = (Spinner)findViewById(R.id.spinnerMonths);
+        ArrayAdapter<String> monthSpinnerAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
+        //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.planets_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        monthSpinnerAdapter.add("October");
+        monthSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        monthSpinner.setAdapter(monthSpinnerAdapter);
     }
 
 
