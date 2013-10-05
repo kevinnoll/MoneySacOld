@@ -106,7 +106,7 @@
                 android:button="@null"
                 android:gravity="center"
                 android:checked="false"
-                android:textColor="@android:color/black"
+                android:textColor="@drawable/button_text_color"
                 android:text="@string/strEinnahmen"/>
             <RadioButton android:id="@+id/button_two"
                 android:layout_width="0dp"
@@ -118,7 +118,7 @@
                 android:button="@null"
                 android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/black"/>
+                android:textColor="@drawable/button_text_color"/>
             <RadioButton android:id="@+id/button_three"
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
@@ -129,8 +129,8 @@
                 android:button="@null"
                 android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-
-                android:textColor="@android:color/black"/>
+                android:textColor="@drawable/button_text_color"
+                />
         </money.sac.dev.SegmentedRadioGroup>
 
         <Button

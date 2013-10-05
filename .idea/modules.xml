@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MoneySac/MoneySac.iml" filepath="$PROJECT_DIR$/MoneySac/MoneySac.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MoneySac/MoneySac-MoneySac.iml" filepath="$PROJECT_DIR$/MoneySac/MoneySac-MoneySac.iml" />
       <module fileurl="file://$PROJECT_DIR$/MoneySacProject.iml" filepath="$PROJECT_DIR$/MoneySacProject.iml" />
     </modules>
   </component>
