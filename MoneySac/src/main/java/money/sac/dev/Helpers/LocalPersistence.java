@@ -6,6 +6,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import money.sac.dev.Model.BankAccountMonth;
@@ -57,6 +61,7 @@ public class LocalPersistence {
         try {
 
             FileInputStream fileIn = context.getApplicationContext().openFileInput(filename);
+
             objectIn = new ObjectInputStream(fileIn);
             object = (BankAccountMonth)objectIn.readObject();
 
@@ -77,5 +82,9 @@ public class LocalPersistence {
         }
 
         return object;
+    }
+
+    public static List<String> getAllFilesNames(Context context){
+        return new LinkedList<String>(Arrays.asList(context.getApplicationContext().fileList()));
     }
 }

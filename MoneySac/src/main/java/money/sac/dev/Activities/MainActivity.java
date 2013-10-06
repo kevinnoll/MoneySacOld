@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Locale;
 
 import money.sac.dev.Adapters.ListViewAdapter;
+import money.sac.dev.Helpers.LocalPersistence;
 import money.sac.dev.Model.BankAccountList;
 import money.sac.dev.Model.BankAccountMonth;
 import money.sac.dev.Model.ListEntry;
@@ -34,8 +36,8 @@ public class MainActivity extends Activity {
     }
 
     private void load() {
-        Spinner monthSpinner = loadSpinner();
         ListView listView = loadListView();
+        Spinner monthSpinner = loadSpinner();
         SegmentedRadioGroup segmentedButton = loadSegmentedRadioGroup();
     }
 
@@ -95,13 +97,28 @@ public class MainActivity extends Activity {
     }
 
     private List<String> getMonths() {
-        List<String> list = new LinkedList<String>();
-        SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy", Locale.GERMAN);
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MONTH, 0);
-        Date thisMonth = calendar.getTime();
-        list.add(sdf.format(thisMonth).toString());
-        return list;
+        //TODO load directly from using method at LocalPersistence.java and get the name in the spinner from the date in the entry !
+        SimpleDateFormat sdfOut = new SimpleDateFormat("MMMM yyyy", Locale.GERMAN);
+        SimpleDateFormat sdfIn = new SimpleDateFormat("yyyyMM", Locale.GERMAN);
+
+        List<String> list = LocalPersistence.getAllFilesNames(this);
+        List<String> listToReturn = new LinkedList<String>();
+
+        for(int i = 0; i < list.size(); i++){
+            Log.d("filename"+i, list.get(i));
+            try {
+                if(list.get(i).startsWith("20")){
+                    Date month = sdfIn.parse(list.get(i));
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(month);
+                    cal.add(Calendar.MONTH, 1);
+                    listToReturn.add(sdfOut.format(cal.getTime()));
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return listToReturn;
     }
 
     @Override
