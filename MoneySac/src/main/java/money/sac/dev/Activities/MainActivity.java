@@ -1,14 +1,21 @@
 package money.sac.dev.Activities;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -17,6 +24,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+import money.sac.dev.Adapters.DatePickerFragment;
 import money.sac.dev.Adapters.ListViewAdapter;
 import money.sac.dev.Helpers.LocalPersistence;
 import money.sac.dev.Model.BankAccountList;
@@ -26,6 +34,9 @@ import money.sac.dev.R;
 import money.sac.dev.Helpers.SegmentedRadioGroup;
 
 public class MainActivity extends Activity {
+
+    SimpleDateFormat sdfOut = new SimpleDateFormat("MMMM yyyy", Locale.GERMAN);
+    SimpleDateFormat sdfIn = new SimpleDateFormat("yyyyMM", Locale.GERMAN);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +99,7 @@ public class MainActivity extends Activity {
         Spinner monthSpinner = (Spinner)findViewById(R.id.spinnerMonths);
         ArrayAdapter<String> monthSpinnerAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
-        List<String> allMonths = getMonths();
-        monthSpinnerAdapter.addAll(allMonths);
+        monthSpinnerAdapter.addAll(getMonths());
         monthSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         monthSpinner.setAdapter(monthSpinnerAdapter);
@@ -98,8 +108,6 @@ public class MainActivity extends Activity {
 
     private List<String> getMonths() {
         //TODO load directly from using method at LocalPersistence.java and get the name in the spinner from the date in the entry !
-        SimpleDateFormat sdfOut = new SimpleDateFormat("MMMM yyyy", Locale.GERMAN);
-        SimpleDateFormat sdfIn = new SimpleDateFormat("yyyyMM", Locale.GERMAN);
 
         List<String> list = LocalPersistence.getAllFilesNames(this);
         List<String> listToReturn = new LinkedList<String>();
@@ -117,11 +125,38 @@ public class MainActivity extends Activity {
         return listToReturn;
     }
 
+
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePickerFragment(this);
+        newFragment.show(getFragmentManager(), "datePicker");
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.main, menu); //menu is toggled off, turn on if needed!
         return false;
     }
-    
+
+    public void addMonthToSpinner(String date) {
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinnerMonths);
+        ArrayAdapter<String> adapter = (ArrayAdapter<String>)spinner.getAdapter();
+        Log.d("DATE STRING",date);
+        try {
+            boolean found = false;
+            for(int i = 0; i < adapter.getCount(); i++){
+                if(adapter.getItem(i).equals(sdfOut.format(sdfIn.parse(date)))){
+                    found = true;
+                }
+            }
+            if(!found){
+                adapter.add(sdfOut.format(sdfIn.parse(date)));
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
