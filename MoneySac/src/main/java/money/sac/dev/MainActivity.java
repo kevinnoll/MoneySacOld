@@ -7,6 +7,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class MainActivity extends Activity {
 
     @Override
@@ -25,11 +28,17 @@ public class MainActivity extends Activity {
     private ListView loadListView(){
         ListView listView = (ListView)findViewById(R.id.listViewEntries);
         ListEntry[] listEntries = new ListEntry[5];
-        listEntries[0] = new ListEntry("Schuhe", 100, false);
-        listEntries[1] = new ListEntry("Gehalt", 2000, true);
-        listEntries[2] = new ListEntry("Laptop", 1000, false);
-        listEntries[3] = new ListEntry("Taschengeld", 100, true);
-        listEntries[4] = new ListEntry("Essen", 200, false);
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, 0);
+        Date today = calendar.getTime();
+        calendar.add(Calendar.DATE, -1);
+        Date yesterday = calendar.getTime();
+
+        listEntries[0] = new ListEntry(yesterday, "Schuhe", 100, false);
+        listEntries[1] = new ListEntry(yesterday, "Gehalt", 2000, true);
+        listEntries[2] = new ListEntry(today, "Laptop", 1000, false);
+        listEntries[3] = new ListEntry(today, "Taschengeld", 100, true);
+        listEntries[4] = new ListEntry(today, "Essen", 200, false);
 
         ListViewAdapter listAdapter = new ListViewAdapter(this, listEntries);
         listView.setAdapter(listAdapter);

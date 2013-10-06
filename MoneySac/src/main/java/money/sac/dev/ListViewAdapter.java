@@ -11,6 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ListViewAdapter extends ArrayAdapter<ListEntry> {
     private final Context context;
     private final ListEntry[] values;
@@ -27,12 +31,16 @@ public class ListViewAdapter extends ArrayAdapter<ListEntry> {
         View rowView = inflater.inflate(R.layout.listrow, parent, false);
         TextView textViewDesc = (TextView) rowView.findViewById(R.id.textViewListRowDesc);
         TextView textViewAmount = (TextView) rowView.findViewById(R.id.textViewListRowAmount);
+        TextView textViewDate = (TextView) rowView.findViewById(R.id.textViewListRowDate);
         ImageView imageViewArrow = (ImageView) rowView.findViewById(R.id.imageViewListRowArrow);
         textViewDesc.setText(values[position].getDesc());
         textViewAmount.setText(values[position].getAmount()+"");
+
+        //get a formatted String from Date
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.");
+        textViewDate.setText(sdf.format(values[position].getDate()).toString());
         // Change the icon for Windows and iPhone
-        boolean isIncome = values[position].getIsIncome();
-        if (isIncome) {
+        if (values[position].getIsIncome()) {
             imageViewArrow.setImageResource(R.drawable.arrow_green);
         } else {
             imageViewArrow.setImageResource(R.drawable.arrow_red);

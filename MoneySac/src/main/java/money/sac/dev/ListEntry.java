@@ -1,5 +1,7 @@
 package money.sac.dev;
 
+import java.util.Date;
+
 /**
  * Created by Kev1n on 05.10.13.
  */
@@ -7,11 +9,21 @@ public class ListEntry {
     private String desc;
     private boolean isIncome;
     private double amount;
+    private Date date;
 
-    public ListEntry(String desc, double amount, boolean isIncome) {
+    public ListEntry(Date date, String desc, double amount, boolean isIncome) {
+        this.date = date;
         this.isIncome = isIncome;
         this.desc = desc;
         this.amount = amount;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getDesc() {
