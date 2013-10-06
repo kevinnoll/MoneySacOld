@@ -1,4 +1,4 @@
-package money.sac.dev;
+package money.sac.dev.Helpers;
 
 /*
  * Copyright (C) 2011 Make Ramen, LLC
@@ -18,6 +18,8 @@ package money.sac.dev;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RadioGroup;
+
+import money.sac.dev.R;
 
 
 public class SegmentedRadioGroup extends RadioGroup {

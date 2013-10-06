@@ -1,11 +1,12 @@
-package money.sac.dev;
+package money.sac.dev.Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Kev1n on 05.10.13.
  */
-public class ListEntry {
+public class ListEntry implements Serializable{
     private String desc;
     private boolean isIncome;
     private double amount;

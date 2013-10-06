@@ -1,0 +1,51 @@
+package money.sac.dev.Model;
+
+import android.content.Context;
+import android.util.Log;
+
+import java.util.Calendar;
+import java.util.Date;
+
+import money.sac.dev.Helpers.LocalPersistence;
+
+/**
+ * Created by Kev1n on 06.10.13.
+ */
+public class BankAccountList {
+
+    /**
+     *
+     * @param context the context
+     * @param accountMonth the BankAccountMonth you want to persist
+     */
+    public static void addMonthToStorage(Context context, BankAccountMonth accountMonth){
+        String fileName = getFileNameFromDate(accountMonth.getMonth());
+        LocalPersistence.witeObjectToFile(context, accountMonth, fileName);
+    }
+
+    private static String getEditedMonth(int month) {
+        if(month >= 0 && month < 10){
+            return "0"+month;
+        } else {
+            return month+"";
+        }
+    }
+
+    /**
+     *
+     * @param context the context
+     * @param fileName the months milliseconds as string, get with simpledateformat
+     * @return the BankAccountMonth
+     */
+    public static BankAccountMonth getMonthFromStorage(Context context, Date date){
+        String fileName = getFileNameFromDate(date);
+        return LocalPersistence.readObjectFromFile(context, fileName);
+    }
+
+    public static String getFileNameFromDate(Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return (cal.get(Calendar.YEAR) + getEditedMonth(cal.get(Calendar.MONTH)));
+
+    }
+}

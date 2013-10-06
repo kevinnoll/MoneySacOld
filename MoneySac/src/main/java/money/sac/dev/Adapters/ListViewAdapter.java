@@ -1,4 +1,4 @@
-package money.sac.dev;
+package money.sac.dev.Adapters;
 
 /**
  * Created by Kev1n on 05.10.13.
@@ -11,15 +11,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.LinkedList;
+
+import money.sac.dev.Model.ListEntry;
+import money.sac.dev.R;
 
 public class ListViewAdapter extends ArrayAdapter<ListEntry> {
     private final Context context;
-    private final ListEntry[] values;
+    private final LinkedList<ListEntry> values;
 
-    public ListViewAdapter(Context context, ListEntry[] values) {
+    public ListViewAdapter(Context context, LinkedList<ListEntry> values) {
         super(context, R.layout.listrow, values);
         this.context = context;
         this.values = values;
@@ -33,14 +35,14 @@ public class ListViewAdapter extends ArrayAdapter<ListEntry> {
         TextView textViewAmount = (TextView) rowView.findViewById(R.id.textViewListRowAmount);
         TextView textViewDate = (TextView) rowView.findViewById(R.id.textViewListRowDate);
         ImageView imageViewArrow = (ImageView) rowView.findViewById(R.id.imageViewListRowArrow);
-        textViewDesc.setText(values[position].getDesc());
-        textViewAmount.setText(values[position].getAmount()+"");
+        textViewDesc.setText(values.get(position).getDesc());
+        textViewAmount.setText(values.get(position).getAmount()+"");
 
         //get a formatted String from Date
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.");
-        textViewDate.setText(sdf.format(values[position].getDate()).toString());
+        textViewDate.setText(sdf.format(values.get(position).getDate()).toString());
         // Change the icon for Windows and iPhone
-        if (values[position].getIsIncome()) {
+        if (values.get(position).getIsIncome()) {
             imageViewArrow.setImageResource(R.drawable.arrow_green);
         } else {
             imageViewArrow.setImageResource(R.drawable.arrow_red);
