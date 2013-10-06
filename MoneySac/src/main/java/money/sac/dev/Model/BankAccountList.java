@@ -24,6 +24,10 @@ public class BankAccountList {
     }
 
     private static String getEditedMonth(int month) {
+        //adding +1 because of zero-indexed months.
+        //the parsing with a simpledateformatter is 1-based, so im adding +1 here.
+        //additionally it reads better if the file is named 201310 in october (10th month).
+        month+=1;
         if(month >= 0 && month < 10){
             return "0"+month;
         } else {

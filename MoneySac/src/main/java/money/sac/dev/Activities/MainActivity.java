@@ -108,11 +108,7 @@ public class MainActivity extends Activity {
             Log.d("filename"+i, list.get(i));
             try {
                 if(list.get(i).startsWith("20")){
-                    Date month = sdfIn.parse(list.get(i));
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTime(month);
-                    cal.add(Calendar.MONTH, 1);
-                    listToReturn.add(sdfOut.format(cal.getTime()));
+                    listToReturn.add(sdfOut.format(sdfIn.parse(list.get(i))));
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
